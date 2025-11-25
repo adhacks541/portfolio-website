@@ -1,36 +1,83 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Aditya Singh | SDE × Cybersecurity Hybrid Portfolio
 
-## Getting Started
+![Portfolio Preview](https://via.placeholder.com/1200x630.png?text=Aditya+Singh+Portfolio)
 
-First, run the development server:
+> A high-performance, interactive portfolio website built with Next.js and Framer Motion, designed to showcase the intersection of Software Engineering and Cybersecurity.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🚀 Overview
+
+This portfolio is crafted to reflect a "Cyberpunk / High-Tech Security" aesthetic, featuring glassmorphism effects, neon accents, and fluid animations. It serves as a central hub for my projects, skills, and achievements as a Developer and Security Researcher.
+
+## ✨ Features
+
+-   **Advanced Animations**: Powered by Framer Motion for smooth scroll reveals, hover effects, and a custom magnetic cursor.
+-   **Cyberpunk Aesthetic**: Dark mode design with neon green/blue accents and glassmorphism UI elements.
+-   **Responsive Design**: Fully optimized for mobile, tablet, and desktop devices.
+-   **Interactive Components**:
+    -   **Hero Section**: 3D perspective grid background and animated typography.
+    -   **Skills Matrix**: Categorized technical arsenal (Development, Security, Tools, AI).
+    -   **Project Showcase**: Interactive cards with tilt effects and tech stack details.
+    -   **Achievements**: Highlighted awards and roles.
+
+## 🛠️ Tech Stack
+
+-   **Framework**: [Next.js 14](https://nextjs.org/) (App Router)
+-   **Styling**: CSS Modules + Global CSS Variables
+-   **Animations**: [Framer Motion](https://www.framer.com/motion/)
+-   **Icons**: [Lucide React](https://lucide.dev/)
+-   **Fonts**: Inter (Body) & JetBrains Mono (Code/Headings)
+
+## ⚡ Getting Started
+
+### Prerequisites
+
+-   Node.js (v18 or higher)
+-   npm or yarn
+
+### Installation
+
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/adhacks/portfolio.git
+    cd portfolio
+    ```
+
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    # or
+    yarn install
+    ```
+
+3.  **Run the development server:**
+    ```bash
+    npm run dev
+    ```
+
+4.  **Open your browser:**
+    Navigate to [http://localhost:3000](http://localhost:3000) to see the application running.
+
+## 📂 Project Structure
+
+```
+portfolio/
+├── src/
+│   ├── app/              # Next.js App Router pages and layout
+│   ├── components/       # Reusable UI components (Hero, Navbar, etc.)
+│   └── ...
+├── public/               # Static assets
+└── ...
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📬 Contact
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+-   **Name**: Aditya Singh
+-   **Role**: SDE × Cybersecurity Hybrid
+-   **Email**: [contact@aditya.singh](mailto:contact@aditya.singh)
+-   **LinkedIn**: [adhacks](https://linkedin.com/in/adhacks)
+-   **GitHub**: [adhacks](https://github.com/adhacks)
+-   **Twitter**: [@adhacks](https://twitter.com/adhacks)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Built with 💻 and 🛡️ by Aditya Singh.
