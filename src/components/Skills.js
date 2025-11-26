@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { Code2, Shield, Terminal, Database } from 'lucide-react';
 import styles from './Skills.module.css';
+import HolographicCard from './HolographicCard';
 
 const skillCategories = [
     {
@@ -45,23 +46,24 @@ export default function Skills() {
                     {skillCategories.map((category, index) => (
                         <motion.div
                             key={category.title}
-                            className={`glass-card ${styles.category}`}
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.5, delay: index * 0.1 }}
                         >
-                            <h3 className={styles.categoryTitle}>
-                                {category.icon}
-                                {category.title}
-                            </h3>
-                            <div className={styles.skillList}>
-                                {category.skills.map((skill) => (
-                                    <span key={skill} className={styles.skillTag}>
-                                        {skill}
-                                    </span>
-                                ))}
-                            </div>
+                            <HolographicCard className={styles.category}>
+                                <h3 className={styles.categoryTitle}>
+                                    {category.icon}
+                                    {category.title}
+                                </h3>
+                                <div className={styles.skillList}>
+                                    {category.skills.map((skill) => (
+                                        <span key={skill} className={styles.skillTag}>
+                                            {skill}
+                                        </span>
+                                    ))}
+                                </div>
+                            </HolographicCard>
                         </motion.div>
                     ))}
                 </div>

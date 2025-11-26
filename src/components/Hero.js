@@ -3,13 +3,13 @@
 import { motion } from 'framer-motion';
 import styles from './Hero.module.css';
 import Link from 'next/link';
+import GlitchText from './GlitchText';
+import Scene from './Scene';
 
 export default function Hero() {
     return (
         <section className={styles.hero}>
-            <div className={styles.background}>
-                <div className={styles.grid}></div>
-            </div>
+            <Scene />
 
             <div className={styles.content}>
                 <motion.span
@@ -21,14 +21,15 @@ export default function Hero() {
                     Hi, I'm
                 </motion.span>
 
-                <motion.h1
-                    className={styles.name}
+                <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.5, delay: 0.4 }}
                 >
-                    Aditya Singh
-                </motion.h1>
+                    <h1 className={styles.name}>
+                        <GlitchText text="Aditya Singh" />
+                    </h1>
+                </motion.div>
 
                 <motion.div
                     className={styles.role}
@@ -36,7 +37,7 @@ export default function Hero() {
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.6 }}
                 >
-                    SDE <span className={styles.highlight}>×</span> Cybersecurity Hybrid
+                    <GlitchText text="SDE" /> <span className={styles.highlight}>×</span> <GlitchText text="Cybersecurity Hybrid" />
                 </motion.div>
 
                 <motion.p

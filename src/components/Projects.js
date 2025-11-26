@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { Folder, Github, ExternalLink } from 'lucide-react';
 import styles from './Projects.module.css';
+import HolographicCard from './HolographicCard';
 
 const projects = [
     {
@@ -67,32 +68,33 @@ export default function Projects() {
                     {projects.map((project, index) => (
                         <motion.div
                             key={project.title}
-                            className={`glass-card ${styles.card}`}
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.5, delay: index * 0.1 }}
                         >
-                            <div className={styles.cardHeader}>
-                                <Folder size={40} className={styles.folderIcon} />
-                                <div className={styles.links}>
-                                    <a href={project.github} target="_blank" rel="noopener noreferrer" className={styles.linkIcon}>
-                                        <Github size={20} />
-                                    </a>
-                                    <a href={project.link} target="_blank" rel="noopener noreferrer" className={styles.linkIcon}>
-                                        <ExternalLink size={20} />
-                                    </a>
+                            <HolographicCard className={styles.card}>
+                                <div className={styles.cardHeader}>
+                                    <Folder size={40} className={styles.folderIcon} />
+                                    <div className={styles.links}>
+                                        <a href={project.github} target="_blank" rel="noopener noreferrer" className={styles.linkIcon}>
+                                            <Github size={20} />
+                                        </a>
+                                        <a href={project.link} target="_blank" rel="noopener noreferrer" className={styles.linkIcon}>
+                                            <ExternalLink size={20} />
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <h3 className={styles.title}>{project.title}</h3>
-                            <p className={styles.description}>{project.description}</p>
+                                <h3 className={styles.title}>{project.title}</h3>
+                                <p className={styles.description}>{project.description}</p>
 
-                            <div className={styles.techStack}>
-                                {project.tech.map((tech) => (
-                                    <span key={tech} className={styles.tech}>{tech}</span>
-                                ))}
-                            </div>
+                                <div className={styles.techStack}>
+                                    {project.tech.map((tech) => (
+                                        <span key={tech} className={styles.tech}>{tech}</span>
+                                    ))}
+                                </div>
+                            </HolographicCard>
                         </motion.div>
                     ))}
                 </div>

@@ -64,9 +64,11 @@
     font-weight: 800;
     margin-bottom: 1rem;
     line-height: 1.1;
-    background: linear-gradient(to right, #fff, #a0a0a0);
+    background: linear-gradient(to right, var(--accent-green), var(--accent-blue));
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
+    display: inline-block;
 }
 
 .role {
@@ -125,15 +127,26 @@
 
 @media (max-width: 768px) {
     .name {
-        font-size: 2.5rem;
+        font-size: 2rem;
     }
 
     .role {
-        font-size: 1.2rem;
+        font-size: 1rem;
     }
 
     .ctaButtons {
         flex-direction: column;
-        gap: 10px;
+        gap: 15px;
+        width: 100%;
+    }
+
+    .primaryBtn,
+    .secondaryBtn {
+        width: 100%;
+    }
+
+    .content {
+        padding: 0 20px;
+        width: 100%;
     }
 }
