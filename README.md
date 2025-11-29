@@ -1,8 +1,13 @@
 # Aditya Singh | SDE × Cybersecurity Hybrid Portfolio
 
-![Portfolio Preview](https://via.placeholder.com/1200x630.png?text=Aditya+Singh+Portfolio)
+# Advanced Portfolio Website
 
-> A high-performance, interactive portfolio website built with Next.js and Framer Motion, designed to showcase the intersection of Software Engineering and Cybersecurity.
+> **Status**: Ultra-Advanced Design (Phase 5 Complete)
+> **Last Updated**: November 2025
+> **Deployed**: Vercel
+
+A high-performance, cinematic portfolio website built for **Aditya Singh** (SDE × Cybersecurity Hybrid).
+on, designed to showcase the intersection of Software Engineering and Cybersecurity.
 
 ## 🚀 Overview
 
