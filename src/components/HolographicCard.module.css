@@ -4,6 +4,14 @@
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.1);
     overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5),
+        0 0 20px rgba(112, 0, 255, 0.2);
+    border-color: rgba(112, 0, 255, 0.4);
 }
 
 .content {
@@ -18,11 +26,15 @@
     inset: 0;
     border-radius: inherit;
     padding: 2px;
-    /* Border width */
     background: linear-gradient(to right, var(--accent-green), var(--accent-blue), var(--accent-purple));
     -webkit-mask-composite: xor;
     mask-composite: exclude;
-    opacity: 0.5;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.card:hover .border {
+    opacity: 1;
 }
 
 .border::before {

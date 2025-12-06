@@ -1,22 +1,33 @@
 :root {
   /* Colors */
-  --bg-color: #050505;
-  --bg-secondary: #0a0a0a;
+  --bg-color: #030014;
   --text-primary: #ffffff;
-  --text-secondary: #a0a0a0;
+  --text-secondary: #b4b4c8;
+
+  --accent-primary: #7000ff;
+  --accent-secondary: #00ffff;
+  --accent-tertiary: #ff0080;
+
   --accent-green: #00ff9d;
   --accent-blue: #00b8ff;
   --accent-purple: #bd00ff;
-  --glass-border: rgba(255, 255, 255, 0.1);
-  --glass-bg: rgba(255, 255, 255, 0.03);
-  
+
+  --glass-bg: rgba(15, 10, 35, 0.6);
+  --glass-border: rgba(112, 0, 255, 0.3);
+  --glass-shine: rgba(0, 255, 255, 0.1);
+
   /* Spacing */
   --nav-height: 80px;
   --container-width: 1200px;
-  
+
   /* Animations */
   --transition-fast: 0.2s ease;
   --transition-medium: 0.4s ease;
+
+  /* Fonts */
+  --font-inter: var(--font-inter);
+  --font-mono: var(--font-mono);
+  --font-orbitron: var(--font-orbitron);
 }
 
 * {
@@ -79,6 +90,7 @@ a {
 
 .gradient-text {
   background: linear-gradient(45deg, var(--accent-green), var(--accent-blue));
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

@@ -38,12 +38,12 @@
     color: var(--text-primary);
 }
 
-.links {
+.desktopMenu {
     display: flex;
     gap: 32px;
 }
 
-.link {
+.navLink {
     position: relative;
     font-size: 0.9rem;
     font-weight: 500;
@@ -51,11 +51,11 @@
     transition: var(--transition-fast);
 }
 
-.link:hover {
+.navLink:hover {
     color: var(--accent-green);
 }
 
-.link::after {
+.navLink::after {
     content: '';
     position: absolute;
     bottom: -4px;
@@ -66,7 +66,7 @@
     transition: var(--transition-fast);
 }
 
-.link:hover::after {
+.navLink:hover::after {
     width: 100%;
 }
 
@@ -102,7 +102,7 @@
 }
 
 @media (max-width: 768px) {
-    .links {
+    .desktopMenu {
         display: none;
     }
 

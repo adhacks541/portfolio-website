@@ -3,21 +3,21 @@ import About from '@/components/About';
 import Skills from '@/components/Skills';
 import Projects from '@/components/Projects';
 import Achievements from '@/components/Achievements';
-import Contact from '@/components/Contact';
-import Footer from '@/components/Footer';
 import CustomCursor from '@/components/CustomCursor';
+import Experience from '@/components/Experience';
+import ContactForm from '@/components/ContactForm';
 
 export default function Home() {
-    return (
-        <>
-            <CustomCursor />
-            <Hero />
-            <About />
-            <Skills />
-            <Projects />
-            <Achievements />
-            <Contact />
-            <Footer />
-        </>
-    );
+  return (
+    <main>
+      <CustomCursor />
+      <Hero />
+      <About />
+      <Experience />
+      <Skills />
+      <Projects />
+      <Achievements />
+      <ContactForm />
+    </main>
+  );
 }

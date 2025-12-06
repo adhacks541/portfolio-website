@@ -2,27 +2,23 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Terminal } from 'lucide-react';
-import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
 import styles from './Navbar.module.css';
 
 const navLinks = [
     { name: 'Home', href: '/' },
     { name: 'About', href: '#about' },
-    { name: 'Skills', href: '#skills' },
     { name: 'Projects', href: '#projects' },
+    { name: 'Skills', href: '#skills' },
     { name: 'Contact', href: '#contact' },
 ];
 
 export default function Navbar() {
+    const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
-    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-    const { scrollYProgress } = useScroll();
-    const scaleX = useSpring(scrollYProgress, {
-        stiffness: 100,
-        damping: 30,
-        restDelta: 0.001
-    });
+    const pathname = usePathname();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -37,13 +33,17 @@ export default function Navbar() {
             <div className={styles.container}>
                 <Link href="/" className={styles.logo}>
                     <Terminal size={20} style={{ display: 'inline', marginRight: '8px', verticalAlign: 'middle' }} />
-                    Aditya<span>Singh</span>
+                    Aditya<span className={styles.highlight}>.Security</span>
                 </Link>
 
-                {/* Desktop Links */}
-                <div className={styles.links}>
+                {/* Desktop Menu */}
+                <div className={styles.desktopMenu}>
                     {navLinks.map((link) => (
-                        <Link key={link.name} href={link.href} className={styles.link}>
+                        <Link
+                            key={link.name}
+                            href={link.href}
+                            className={`${styles.navLink} ${pathname === link.href ? styles.active : ''}`}
+                        >
                             {link.name}
                         </Link>
                     ))}
@@ -52,14 +52,14 @@ export default function Navbar() {
                 {/* Mobile Menu Button */}
                 <button
                     className={styles.mobileMenuBtn}
-                    onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                    onClick={() => setIsOpen(!isOpen)}
                 >
-                    {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                    {isOpen ? <X size={24} /> : <Menu size={24} />}
                 </button>
 
                 {/* Mobile Menu */}
                 <AnimatePresence>
-                    {mobileMenuOpen && (
+                    {isOpen && (
                         <motion.div
                             className={styles.mobileMenu}
                             initial={{ x: '100%' }}
@@ -71,9 +71,8 @@ export default function Navbar() {
                                 <Link
                                     key={link.name}
                                     href={link.href}
-                                    className={styles.link}
-                                    onClick={() => setMobileMenuOpen(false)}
-                                    style={{ fontSize: '1.5rem' }}
+                                    className={`${styles.mobileNavLink} ${pathname === link.href ? styles.active : ''}`}
+                                    onClick={() => setIsOpen(false)}
                                 >
                                     {link.name}
                                 </Link>
@@ -82,19 +81,6 @@ export default function Navbar() {
                     )}
                 </AnimatePresence>
             </div>
-            {/* Scroll Progress Bar */}
-            <motion.div
-                style={{
-                    position: 'absolute',
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    height: '2px',
-                    background: 'var(--accent-green)',
-                    transformOrigin: '0%',
-                    scaleX
-                }}
-            />
         </nav>
     );
 }

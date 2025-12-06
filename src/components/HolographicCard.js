@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, useMotionTemplate, useMotionValue, useSpring } from 'framer-motion';
+import { useMotionTemplate, useMotionValue, useSpring } from 'framer-motion';
 import { useRef } from 'react';
 import styles from './HolographicCard.module.css';
 

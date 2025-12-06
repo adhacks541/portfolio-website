@@ -7,26 +7,73 @@ import HolographicCard from './HolographicCard';
 
 const skillCategories = [
     {
-        title: 'Development',
+        title: 'Core Development',
         icon: <Code2 size={24} />,
-        skills: ['Python', 'JavaScript', 'React', 'Next.js', 'Flask', 'C++', 'Solidity', 'HTML/CSS']
+        skills: [
+            { name: 'Python', level: 95 },
+            { name: 'JavaScript', level: 90 },
+            { name: 'C++', level: 85 },
+            { name: 'Solidity', level: 60 },
+            { name: 'React', level: 90 },
+            { name: 'Next.js', level: 85 },
+            { name: 'Node.js', level: 80 },
+            { name: 'SQL', level: 75 }
+        ]
     },
     {
-        title: 'Security',
+        title: 'Offensive Security',
         icon: <Shield size={24} />,
-        skills: ['OSINT', 'Vulnerability Scanning', 'Bug Hunting', 'Smart Contract Security', 'Threat Intel', 'Nmap', 'Burp Suite']
+        skills: [
+            { name: 'Penetration Testing', level: 90 },
+            { name: 'Smart Contract Auditing', level: 85 },
+            { name: 'OSINT', level: 95 },
+            { name: 'Burp Suite', level: 85 },
+            { name: 'Metasploit', level: 80 },
+            { name: 'Nmap', level: 90 },
+            { name: 'Wireshark', level: 85 }
+        ]
     },
     {
-        title: 'Tools & DevOps',
-        icon: <Terminal size={24} />,
-        skills: ['Git', 'GitHub Actions', 'Linux', 'Vercel', 'Docker', 'Wireshark', 'Metasploit']
-    },
-    {
-        title: 'AI & Data',
+        title: 'AI & Machine Learning',
         icon: <Database size={24} />,
-        skills: ['TensorFlow', 'PyTorch', 'Pandas', 'Scikit-learn', 'OpenAI API', 'SQL', 'Data Analysis']
+        skills: [
+            { name: 'TensorFlow', level: 80 },
+            { name: 'PyTorch', level: 75 },
+            { name: 'Scikit-learn', level: 85 },
+            { name: 'NLP', level: 80 },
+            { name: 'Computer Vision', level: 70 },
+            { name: 'Pandas', level: 90 },
+            { name: 'NumPy', level: 90 }
+        ]
+    },
+    {
+        title: 'DevSecOps & Tools',
+        icon: <Terminal size={24} />,
+        skills: [
+            { name: 'Git', level: 95 },
+            { name: 'Docker', level: 85 },
+            { name: 'Linux', level: 90 },
+            { name: 'CI/CD', level: 80 },
+            { name: 'AWS', level: 75 },
+            { name: 'Vercel', level: 90 }
+        ]
     }
 ];
+
+const staggerContainer = {
+    hidden: { opacity: 0 },
+    show: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.1
+        }
+    }
+};
+
+const fadeInUp = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+};
 
 export default function Skills() {
     return (
@@ -37,19 +84,21 @@ export default function Skills() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                 >
                     Technical <span>Arsenal</span>
                 </motion.h2>
 
-                <div className={styles.grid}>
-                    {skillCategories.map((category, index) => (
+                <motion.div
+                    className={styles.grid}
+                    variants={staggerContainer}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true }}
+                >
+                    {skillCategories.map((category) => (
                         <motion.div
                             key={category.title}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5, delay: index * 0.1 }}
+                            variants={fadeInUp}
                         >
                             <HolographicCard className={styles.category}>
                                 <h3 className={styles.categoryTitle}>
@@ -58,15 +107,27 @@ export default function Skills() {
                                 </h3>
                                 <div className={styles.skillList}>
                                     {category.skills.map((skill) => (
-                                        <span key={skill} className={styles.skillTag}>
-                                            {skill}
-                                        </span>
+                                        <div key={skill.name} className={styles.skillItem}>
+                                            <div className={styles.skillInfo}>
+                                                <span className={styles.skillName}>{skill.name}</span>
+                                                <span className={styles.skillLevel}>{skill.level}%</span>
+                                            </div>
+                                            <div className={styles.progressBar}>
+                                                <motion.div
+                                                    className={styles.progressFill}
+                                                    initial={{ width: 0 }}
+                                                    whileInView={{ width: `${skill.level}%` }}
+                                                    transition={{ duration: 1, ease: "easeOut" }}
+                                                    viewport={{ once: true }}
+                                                />
+                                            </div>
+                                        </div>
                                     ))}
                                 </div>
                             </HolographicCard>
                         </motion.div>
                     ))}
-                </div>
+                </motion.div>
             </div>
         </section>
     );

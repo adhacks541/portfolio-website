@@ -41,23 +41,41 @@
 
 .skillList {
     display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+    flex-direction: column;
+    gap: 16px;
 }
 
-.skillTag {
-    padding: 8px 16px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid var(--glass-border);
-    border-radius: 20px;
+.skillItem {
+    width: 100%;
+}
+
+.skillInfo {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
     font-size: 0.9rem;
-    color: var(--text-secondary);
-    transition: var(--transition-fast);
 }
 
-.skillTag:hover {
-    background: rgba(0, 184, 255, 0.1);
-    border-color: var(--accent-blue);
+.skillName {
     color: var(--text-primary);
-    transform: translateY(-2px);
+}
+
+.skillLevel {
+    color: var(--accent-green);
+    font-family: var(--font-mono);
+}
+
+.progressBar {
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.progressFill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent-blue), var(--accent-green));
+    border-radius: 2px;
+    box-shadow: 0 0 10px var(--accent-green);
 }

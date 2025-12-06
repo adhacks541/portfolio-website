@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import styles from './About.module.css';
+import { fadeInUp, scaleIn } from '@/utils/animations';
 
 export default function About() {
     return (
@@ -9,28 +10,31 @@ export default function About() {
             <div className={styles.container}>
                 <motion.h2
                     className={styles.heading}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    variants={fadeInUp}
+                    initial="hidden"
+                    whileInView="show"
                     viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
                 >
                     About <span>Me</span>
                 </motion.h2>
 
                 <motion.div
                     className={`glass-card ${styles.card}`}
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
+                    variants={scaleIn}
+                    initial="hidden"
+                    whileInView="show"
                     viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.2 }}
                 >
-                    <p>
-                        I’m a <span className={styles.highlight}>CSE student</span> specializing in the intersection of <span className={styles.highlight}>Software Engineering</span> and <span className={styles.highlight}>Cyber Security</span>.
-                        I build AI-driven security tools, Web3 vulnerability scanners, OSINT dashboards, and ML models for real-world problems.
+                    <p className={styles.description}>
+                        I&apos;m a final-year Computer Science student specializing in <strong>Cybersecurity</strong> and <strong>Full-Stack Development</strong>. My passion lies in bridging the gap between secure systems and intuitive user experiences.
                     </p>
                     <br />
                     <p>
-                        I don’t chase keywords — I <span className={styles.highlight}>chase impact</span>. My goal is to become a high-paid SDE × Cybersecurity hybrid who can <span className={styles.highlight}>build and break systems</span> with equal proficiency.
+                        My work revolves around <span className={styles.highlight}>Offensive Security</span>, <span className={styles.highlight}>Smart Contract Auditing</span>, and <span className={styles.highlight}>Full-Stack Development</span>. I don&apos;t just write code; I analyze how it can be broken and architect it to withstand attacks.
+                    </p>
+                    <br />
+                    <p>
+                        From building <span className={styles.highlight}>0xSentinel</span> (a Web3 vulnerability scanner) to architecting <span className={styles.highlight}>OSINT dashboards</span> for threat intelligence, my goal is to create technology that is not only functional but inherently secure. I chase impact, not just keywords.
                     </p>
                 </motion.div>
             </div>

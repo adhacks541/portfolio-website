@@ -1,9 +1,10 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { ReactLenis } from 'lenis/react';
 import Navbar from '@/components/Navbar';
 import Preloader from '@/components/Preloader';
+import ScrollProgress from '@/components/ScrollProgress';
 import { AnimatePresence } from 'framer-motion';
 
 export default function ClientLayout({ children }) {
@@ -17,6 +18,7 @@ export default function ClientLayout({ children }) {
 
             {!isLoading && (
                 <ReactLenis root>
+                    <ScrollProgress />
                     <Navbar />
                     <main>{children}</main>
                 </ReactLenis>

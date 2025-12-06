@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Twitter, Mail } from 'lucide-react';
+import { Github, Linkedin, Twitter } from 'lucide-react';
 import styles from './Contact.module.css';
 
 export default function Contact() {
@@ -25,9 +25,12 @@ export default function Contact() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: 0.2 }}
                 >
-                    Whether you have a question, a project idea, or just want to say hi, my inbox is always open. I'll try my best to get back to you!
+                    Whether you have a question, a project idea, or just want to say hi, my inbox is always open. I&apos;ll try my best to get back to you!
                 </motion.p>
 
+                <p className={styles.description}>
+                    I&apos;m always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
+                </p>
                 <motion.a
                     href="mailto:contact@aditya.singh"
                     className={styles.emailBtn}

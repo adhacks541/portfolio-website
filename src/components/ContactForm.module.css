@@ -1,0 +1,126 @@
+.contact {
+    padding: 100px 0;
+    position: relative;
+}
+
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.content {
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+}
+
+.heading {
+    font-family: var(--font-orbitron);
+    font-size: 2.5rem;
+    margin-bottom: 16px;
+    color: var(--text-primary);
+}
+
+.heading span {
+    color: var(--accent-green);
+    text-shadow: 0 0 10px rgba(0, 255, 157, 0.3);
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    margin-bottom: 48px;
+    font-size: 1.1rem;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.inputGroup {
+    position: relative;
+}
+
+.icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+    pointer-events: none;
+    transition: var(--transition-fast);
+}
+
+.textarea~.icon {
+    top: 0;
+    transform: none;
+}
+
+.input,
+.textarea {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 16px 16px 16px 48px;
+    color: var(--text-primary);
+    font-family: var(--font-inter);
+    font-size: 1rem;
+    transition: var(--transition-fast);
+}
+
+.textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.input:focus,
+.textarea:focus {
+    outline: none;
+    border-color: var(--accent-green);
+    background: rgba(0, 255, 157, 0.05);
+    box-shadow: 0 0 20px rgba(0, 255, 157, 0.1);
+}
+
+.input:focus~.icon,
+.textarea:focus~.icon {
+    color: var(--accent-green);
+}
+
+.submitBtn {
+    background: var(--accent-green);
+    color: #000;
+    border: none;
+    padding: 16px 32px;
+    border-radius: 12px;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    transition: var(--transition-medium);
+    margin-top: 16px;
+}
+
+.submitBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px rgba(0, 255, 157, 0.4);
+}
+
+.submitBtn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.success {
+    background: var(--accent-blue);
+    color: #fff;
+}

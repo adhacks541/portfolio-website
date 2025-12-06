@@ -4,12 +4,13 @@ import { motion } from 'framer-motion';
 import styles from './Hero.module.css';
 import Link from 'next/link';
 import GlitchText from './GlitchText';
-import Scene from './Scene';
+import Starfield from './Starfield';
+import TypewriterEffect from './TypewriterEffect';
 
 export default function Hero() {
     return (
         <section className={styles.hero}>
-            <Scene />
+            <Starfield />
 
             <div className={styles.content}>
                 <motion.span
@@ -18,7 +19,7 @@ export default function Hero() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.2 }}
                 >
-                    Hi, I'm
+                    Hi, I&apos;m
                 </motion.span>
 
                 <motion.div
@@ -44,9 +45,9 @@ export default function Hero() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.8 }}
-                    style={{ color: 'var(--text-secondary)', marginBottom: '2rem', maxWidth: '600px', margin: '0 auto 2rem' }}
+                    style={{ color: 'var(--text-secondary)', marginBottom: '2rem', maxWidth: '600px', margin: '0 auto 2rem', height: '3em' }}
                 >
-                    I build AI-driven security tools, Web3 vulnerability scanners, and secure systems.
+                    <TypewriterEffect text="I build AI-driven security tools, Web3 vulnerability scanners, and secure systems." speed={30} delay={1000} />
                 </motion.p>
 
                 <motion.div
