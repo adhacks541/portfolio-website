@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { Trophy, Award, Users, Briefcase } from 'lucide-react';
 import styles from './Achievements.module.css';
+import HolographicCard from './HolographicCard';
 
 const achievements = [
     {
@@ -19,7 +20,7 @@ const achievements = [
     },
     {
         title: 'National Hackathon Winner',
-        organization: 'Smart India Hackathon (Finalist)',
+        organization: 'Smart India Hackathon',
         description: 'Secured top rank in a national-level hackathon for building an AI-driven security solution.',
         icon: <Trophy size={32} />
     },
@@ -30,8 +31,6 @@ const achievements = [
         icon: <Award size={32} />
     }
 ];
-
-
 
 const staggerContainer = {
     hidden: { opacity: 0 },
@@ -44,7 +43,7 @@ const staggerContainer = {
 };
 
 const slideInLeft = {
-    hidden: { opacity: 0, x: -50 },
+    hidden: { opacity: 0, x: -30 },
     show: { opacity: 1, x: 0, transition: { duration: 0.5 } }
 };
 
@@ -58,7 +57,7 @@ export default function Achievements() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                 >
-                    Key <span>Achievements</span>
+                    System <span>Honors</span>
                 </motion.h2>
 
                 <motion.div
@@ -71,12 +70,17 @@ export default function Achievements() {
                     {achievements.map((achievement) => (
                         <motion.div
                             key={achievement.title}
-                            className={`glass-card ${styles.card}`}
                             variants={slideInLeft}
+                            className="h-full"
                         >
-                            <h3 className={styles.title}>{achievement.title}</h3>
-                            <div style={{ color: 'var(--accent-purple)', fontSize: '0.9rem', marginBottom: '5px' }}>{achievement.organization}</div>
-                            <p className={styles.description}>{achievement.description}</p>
+                            <HolographicCard className={styles.card}>
+                                <div className={styles.icon}>
+                                    {achievement.icon}
+                                </div>
+                                <h3 className={styles.title}>{achievement.title}</h3>
+                                <span className={styles.org}>{achievement.organization}</span>
+                                <p className={styles.description}>{achievement.description}</p>
+                            </HolographicCard>
                         </motion.div>
                     ))}
                 </motion.div>

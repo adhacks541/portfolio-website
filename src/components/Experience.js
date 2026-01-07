@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Briefcase, Calendar } from 'lucide-react';
+import { Calendar } from 'lucide-react';
 import styles from './Experience.module.css';
 
 const experiences = [
@@ -9,21 +9,21 @@ const experiences = [
         title: 'Senior Security Engineer',
         company: 'CyberGuard Solutions',
         period: '2023 - Present',
-        description: 'Leading red team operations and developing automated threat detection systems using Python and Go.',
+        description: 'Leading red team operations and developing automated threat detection systems using Python and Go. Orchestrated penetration tests for Fortune 500 clients.',
         skills: ['Red Teaming', 'Python', 'Go', 'AWS Security']
     },
     {
         title: 'Full Stack Developer',
         company: 'TechFlow Inc.',
         period: '2021 - 2023',
-        description: 'Built scalable web applications with Next.js and Node.js. Implemented secure authentication flows and API rate limiting.',
+        description: 'Built scalable web applications with Next.js and Node.js. Implemented secure authentication flows (OAuth2, JWT) and API rate limiting strategies.',
         skills: ['Next.js', 'Node.js', 'PostgreSQL', 'OAuth2']
     },
     {
         title: 'Security Analyst Intern',
         company: 'SecureNet',
         period: '2020 - 2021',
-        description: 'Conducted vulnerability assessments and assisted in incident response procedures.',
+        description: 'Conducted vulnerability assessments and assisted in incident response procedures. Analyzed log data to identify potential breaches.',
         skills: ['Vulnerability Scanning', 'Incident Response', 'Linux']
     }
 ];
@@ -38,7 +38,7 @@ export default function Experience() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                 >
-                    Work <span>Experience</span>
+                    Mission <span>History</span>
                 </motion.h2>
 
                 <div className={styles.timeline}>
@@ -54,7 +54,7 @@ export default function Experience() {
                             <div className={styles.timelineContent}>
                                 <div className={styles.header}>
                                     <h3 className={styles.title}>{exp.title}</h3>
-                                    <span className={styles.company}>{exp.company}</span>
+                                    <span className={styles.company}>@{exp.company}</span>
                                 </div>
                                 <div className={styles.period}>
                                     <Calendar size={14} />
@@ -67,9 +67,7 @@ export default function Experience() {
                                     ))}
                                 </div>
                             </div>
-                            <div className={styles.dot}>
-                                <Briefcase size={16} />
-                            </div>
+                            <div className={styles.dot} />
                         </motion.div>
                     ))}
                 </div>

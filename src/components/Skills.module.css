@@ -1,81 +1,121 @@
 .skills {
     padding: 100px 0;
-    background: var(--bg-secondary);
+    position: relative;
+    z-index: 5;
 }
 
 .container {
     max-width: var(--container-width);
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 20px;
 }
 
 .heading {
-    font-size: 2.5rem;
+    font-size: 3rem;
     margin-bottom: 60px;
-    text-align: center;
+    text-align: right;
+    font-family: var(--font-display);
+    padding-right: 20px;
+    border-right: 4px solid var(--accent-purple);
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 .heading span {
-    color: var(--accent-blue);
+    color: var(--accent-purple);
+    text-shadow: 0 0 10px rgba(191, 0, 255, 0.4);
 }
 
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-}
-
-.category {
-    padding: 30px;
-    height: 100%;
+.categoryGroup {
+    margin-bottom: 80px;
 }
 
 .categoryTitle {
     font-size: 1.5rem;
-    margin-bottom: 20px;
-    color: var(--accent-green);
+    margin-bottom: 30px;
+    color: var(--text-primary);
+    font-family: var(--font-display);
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 10px;
+    width: fit-content;
 }
 
-.skillList {
+.categoryIcon {
+    color: var(--accent-cyan);
+}
+
+.hexGrid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding-left: 20px;
+}
+
+.hexWrapper {
+    width: 140px;
+    height: 160px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hexContent {
+    width: 100%;
+    height: 100%;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(5px);
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    /* Fallback/subtle border logic might not work perfectly with clip-path, using pseudo-element or multiple divs is better for border */
+    position: relative;
 }
 
-.skillItem {
-    width: 100%;
+/* Pseudo-border for Hexagon */
+.hexWrapper::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    background: linear-gradient(45deg, var(--accent-cyan), var(--accent-purple));
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    z-index: -1;
+    opacity: 0.3;
+    transition: opacity 0.3s;
 }
 
-.skillInfo {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 6px;
-    font-size: 0.9rem;
+.hexWrapper:hover .hexContent {
+    background: rgba(0, 240, 255, 0.1);
+}
+
+.hexWrapper:hover::before {
+    opacity: 1;
 }
 
 .skillName {
+    font-weight: 600;
     color: var(--text-primary);
+    margin-bottom: 5px;
+    font-size: 0.9rem;
 }
 
 .skillLevel {
+    font-size: 0.8rem;
     color: var(--accent-green);
     font-family: var(--font-mono);
 }
 
-.progressBar {
-    width: 100%;
-    height: 4px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 2px;
-    overflow: hidden;
-}
-
-.progressFill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--accent-blue), var(--accent-green));
-    border-radius: 2px;
-    box-shadow: 0 0 10px var(--accent-green);
+@media (max-width: 768px) {
+    .hexGrid {
+        justify-content: center;
+        padding-left: 0;
+    }
 }

@@ -1,112 +1,165 @@
 .navbar {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: var(--nav-height);
     z-index: 1000;
-    transition: var(--transition-medium);
-    border-bottom: 1px solid transparent;
+    width: 100%;
+    pointer-events: none;
+    /* Let clicks pass through empty spaces */
 }
 
-.scrolled {
-    background: rgba(5, 5, 5, 0.8);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--glass-border);
-}
-
-.container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 100%;
-    max-width: var(--container-width);
-    margin: 0 auto;
-    padding: 0 20px;
+/* Top Logo Area */
+.logoArea {
+    position: fixed;
+    top: 2rem;
+    left: 2rem;
+    pointer-events: auto;
+    z-index: 1001;
 }
 
 .logo {
-    font-family: var(--font-mono);
+    font-family: var(--font-display);
     font-weight: 700;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     color: var(--accent-green);
-    letter-spacing: -0.5px;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba(0, 255, 157, 0.4);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(5, 5, 16, 0.6);
+    backdrop-filter: blur(8px);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 255, 157, 0.2);
 }
 
 .logo span {
     color: var(--text-primary);
 }
 
-.desktopMenu {
+/* Bottom Floating Dock */
+.dockContainer {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: auto;
+    z-index: 1001;
+}
+
+.dock {
     display: flex;
-    gap: 32px;
+    gap: 1rem;
+    background: rgba(10, 10, 25, 0.7);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    padding: 0.75rem 1.5rem;
+    border-radius: 20px;
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dock:hover {
+    border-color: var(--accent-purple);
+    box-shadow: 0 15px 40px rgba(191, 0, 255, 0.2);
+    transform: translateY(-2px);
 }
 
 .navLink {
     position: relative;
+    padding: 0.5rem 1rem;
     font-size: 0.9rem;
     font-weight: 500;
     color: var(--text-secondary);
-    transition: var(--transition-fast);
+    transition: all var(--transition-fast);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .navLink:hover {
-    color: var(--accent-green);
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateY(-2px);
 }
 
-.navLink::after {
+.active {
+    color: var(--accent-cyan);
+    background: rgba(0, 240, 255, 0.1);
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+}
+
+.active::after {
     content: '';
     position: absolute;
     bottom: -4px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--accent-green);
-    transition: var(--transition-fast);
+    width: 4px;
+    height: 4px;
+    background: var(--accent-cyan);
+    border-radius: 50%;
+    box-shadow: 0 0 5px var(--accent-cyan);
 }
 
-.navLink:hover::after {
-    width: 100%;
-}
-
+/* Mobile Responsive */
 .mobileMenuBtn {
     display: none;
-    background: none;
-    border: none;
+    pointer-events: auto;
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    background: rgba(5, 5, 16, 0.8);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--glass-border);
     color: var(--text-primary);
+    padding: 0.5rem;
+    border-radius: 8px;
+    z-index: 1002;
     cursor: pointer;
 }
 
 .mobileMenu {
     position: fixed;
-    top: var(--nav-height);
+    top: 0;
     left: 0;
     width: 100%;
-    height: calc(100vh - var(--nav-height));
-    background: rgba(5, 5, 5, 0.95);
+    height: 100vh;
+    background: rgba(5, 5, 10, 0.95);
     backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    z-index: 1001;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
-    gap: 32px;
-    transform: translateX(100%);
-    transition: var(--transition-medium);
-    padding-bottom: 40px;
+    align-items: center;
+    gap: 2rem;
+    pointer-events: auto;
+    padding: 2rem;
 }
 
-.mobileMenuOpen {
-    transform: translateX(0);
+.mobileNavLink {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    color: var(--text-secondary);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.mobileNavLink:hover {
+    color: var(--accent-cyan);
+    text-shadow: 0 0 15px var(--accent-cyan);
 }
 
 @media (max-width: 768px) {
-    .desktopMenu {
+    .dockContainer {
         display: none;
+        /* Hide bottom dock on mobile */
     }
 
     .mobileMenuBtn {
-        display: block;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }

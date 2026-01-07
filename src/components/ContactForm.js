@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Send, Mail, User, MessageSquare } from 'lucide-react';
+import { Send, Mail, User, MessageSquare, Terminal } from 'lucide-react';
 import styles from './ContactForm.module.css';
 
 export default function ContactForm() {
@@ -37,15 +37,16 @@ export default function ContactForm() {
             <div className={styles.container}>
                 <motion.div
                     className={styles.content}
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
                 >
                     <h2 className={styles.heading}>
-                        Get in <span>Touch</span>
+                        Establish <span>Uplink</span>
                     </h2>
                     <p className={styles.subtitle}>
-                        Have a project in mind or want to discuss security? Send me a message.
+                        // SECURE_CHANNEL_OPEN:: Send encrypted message...
                     </p>
 
                     <form onSubmit={handleSubmit} className={styles.form}>
@@ -54,7 +55,7 @@ export default function ContactForm() {
                             <input
                                 type="text"
                                 name="name"
-                                placeholder="Your Name"
+                                placeholder="IDENTIFIER (Name)"
                                 value={formState.name}
                                 onChange={handleChange}
                                 required
@@ -66,7 +67,7 @@ export default function ContactForm() {
                             <input
                                 type="email"
                                 name="email"
-                                placeholder="Your Email"
+                                placeholder="CONTACT_ADDRESS (Email)"
                                 value={formState.email}
                                 onChange={handleChange}
                                 required
@@ -77,7 +78,7 @@ export default function ContactForm() {
                             <MessageSquare className={styles.icon} size={20} style={{ marginTop: '12px' }} />
                             <textarea
                                 name="message"
-                                placeholder="Your Message"
+                                placeholder="DATA_PACKET (Message)"
                                 value={formState.message}
                                 onChange={handleChange}
                                 required
@@ -92,12 +93,14 @@ export default function ContactForm() {
                             className={`${styles.submitBtn} ${submitted ? styles.success : ''}`}
                         >
                             {isSubmitting ? (
-                                'Sending...'
+                                <>
+                                    <Terminal size={18} className="animate-spin" /> Transmitting...
+                                </>
                             ) : submitted ? (
-                                'Message Sent!'
+                                'Create Success!'
                             ) : (
                                 <>
-                                    Send Message <Send size={18} />
+                                    Transmit Data <Send size={18} />
                                 </>
                             )}
                         </button>

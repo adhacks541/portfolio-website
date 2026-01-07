@@ -1,8 +1,7 @@
 .achievements {
     padding: 100px 0;
-    background: var(--bg-secondary);
     position: relative;
-    overflow: hidden;
+    z-index: 5;
 }
 
 .container {
@@ -12,13 +11,17 @@
 }
 
 .heading {
-    font-size: 2.5rem;
+    font-size: 3rem;
     margin-bottom: 60px;
     text-align: center;
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 .heading span {
     color: var(--accent-purple);
+    text-shadow: 0 0 10px rgba(191, 0, 255, 0.4);
 }
 
 .grid {
@@ -28,33 +31,45 @@
 }
 
 .card {
-    padding: 30px;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    transition: var(--transition-medium);
-    border: 1px solid rgba(189, 0, 255, 0.1);
-}
-
-.card:hover {
-    border-color: var(--accent-purple);
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(189, 0, 255, 0.1);
+    padding: 30px;
+    background: rgba(20, 10, 35, 0.4);
+    border: 1px solid rgba(191, 0, 255, 0.1);
+    transition: all var(--transition-medium);
 }
 
 .icon {
     color: var(--accent-purple);
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 5px rgba(191, 0, 255, 0.4));
 }
 
 .title {
-    font-size: 1.25rem;
+    font-size: 1.3rem;
     color: var(--text-primary);
     font-weight: 600;
+    margin-bottom: 5px;
+    font-family: var(--font-display);
+}
+
+.org {
+    color: var(--accent-pink);
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    margin-bottom: 15px;
+    display: block;
 }
 
 .description {
     color: var(--text-secondary);
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+    .heading {
+        font-size: 2rem;
+    }
 }

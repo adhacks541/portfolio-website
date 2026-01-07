@@ -2,67 +2,67 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Folder, Github, ExternalLink } from 'lucide-react';
+import { Folder, Github, ExternalLink, Database, Shield, Radio, Activity, Cpu } from 'lucide-react';
 import styles from './Projects.module.css';
 import HolographicCard from './HolographicCard';
 import ProjectModal from './ProjectModal';
 
 const projects = [
     {
-        title: 'Web3 Security Scanner — 0xSentinel',
+        icon: <Shield size={40} />,
+        title: 'Web3 Security Scanner',
         description: 'A comprehensive smart contract vulnerability scanner. Integrates static analysis (Slither/Mythril) with dynamic checks to detect reentrancy, overflow, and logic flaws in Solidity contracts.',
-        tech: ['Solidity', 'Python', 'Web3.py', 'Mythril', 'Slither'],
-        features: ['Automated vulnerability detection', 'Gas optimization suggestions', 'Detailed audit reports'],
+        tech: ['Solidity', 'Python', 'Web3.py', 'Mythril'],
         github: '#',
         link: '#'
     },
     {
-        title: 'OSINT Threat Intelligence Dashboard',
+        icon: <Database size={40} />,
+        title: 'OSINT Threat Dashboard',
         description: 'Real-time threat reconnaissance platform. Aggregates data from Shodan, Whois, and public breach databases to visualize attack surfaces and potential vectors.',
-        tech: ['Flask', 'Python', 'Selenium', 'Folium', 'SQLite'],
-        features: ['Live attack map', 'Breach data search', 'Domain monitoring'],
+        tech: ['Flask', 'Python', 'Folium', 'SQLite'],
         github: '#',
         link: '#'
     },
     {
-        title: 'AI-Based Dark Web Monitoring',
+        icon: <Radio size={40} />,
+        title: 'Dark Web Monitoring',
         description: 'Automated surveillance system for darknet marketplaces. Uses NLP to scrape and analyze hidden service content for leaked credentials and emerging threats.',
-        tech: ['Python', 'Tor', 'NLP', 'Scikit-learn', 'BeautifulSoup'],
-        features: ['Tor network scraping', 'Sentiment analysis', 'Alert system'],
+        tech: ['Python', 'Tor', 'NLP', 'Scikit-learn'],
         github: '#',
         link: '#'
     },
     {
-        title: 'Kidney Disease Prediction Model',
+        icon: <Activity size={40} />,
+        title: 'Kidney Disease Prediction',
         description: 'High-accuracy diagnostic model using ensemble learning. Optimized for early detection of Chronic Kidney Disease (CKD) with a focus on minimizing false negatives.',
-        tech: ['Python', 'Pandas', 'XGBoost', 'Scikit-learn'],
-        features: ['Ensemble learning algorithm', 'High sensitivity', 'Medical data visualization'],
+        tech: ['Python', 'XGBoost', 'Scikit-learn'],
         github: 'https://github.com/adhacks541/chronic-kidney-disease-prediction',
         link: 'https://chronic-kidney-disease-prediction-seven.vercel.app/'
     },
     {
-        title: 'Intrusion Detection System (IDS)',
+        icon: <Cpu size={40} />,
+        title: 'Intrusion Detection System',
         description: 'Network anomaly detection system using deep learning. Analyzes packet flows to identify DDoS attacks and unauthorized access attempts in real-time.',
         tech: ['TensorFlow', 'Keras', 'Python', 'Wireshark'],
-        features: ['Real-time packet analysis', 'Deep learning classification', 'Traffic visualization'],
         github: '#',
         link: '#'
     }
 ];
 
-const staggerContainer = {
+const containerVariants = {
     hidden: { opacity: 0 },
     show: {
         opacity: 1,
         transition: {
-            staggerChildren: 0.1
+            staggerChildren: 0.2
         }
     }
 };
 
-const scaleIn = {
-    hidden: { opacity: 0, scale: 0.9 },
-    show: { opacity: 1, scale: 1, transition: { duration: 0.5 } }
+const cardVariants = {
+    hidden: { opacity: 0, y: 50 },
+    show: { opacity: 1, y: 0, transition: { type: 'spring', bounce: 0.4 } }
 };
 
 export default function Projects() {
@@ -73,38 +73,40 @@ export default function Projects() {
             <div className={styles.container}>
                 <motion.h2
                     className={styles.heading}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0, x: -50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
+                    transition={{ duration: 0.6 }}
                 >
-                    Featured <span>Projects</span>
+                    System._<span>Projects</span>
                 </motion.h2>
 
                 <motion.div
                     className={styles.grid}
-                    variants={staggerContainer}
+                    variants={containerVariants}
                     initial="hidden"
                     whileInView="show"
                     viewport={{ once: true }}
                 >
-                    {projects.map((project) => (
+                    {projects.map((project, index) => (
                         <motion.div
-                            key={project.title}
-                            variants={scaleIn}
+                            key={index}
+                            variants={cardVariants}
                             onClick={() => setSelectedProject(project)}
-                            style={{ cursor: 'pointer' }}
+                            className="h-full"
                         >
                             <HolographicCard className={styles.card}>
                                 <div className={styles.cardHeader}>
-                                    <Folder size={40} className={styles.folderIcon} />
+                                    <div className={styles.folderIcon}>
+                                        {project.icon || <Folder size={40} />}
+                                    </div>
                                     <div className={styles.links}>
-                                        <div className={styles.linkIcon}>
-                                            <Github size={20} />
-                                        </div>
-                                        <div className={styles.linkIcon}>
-                                            <ExternalLink size={20} />
-                                        </div>
+                                        <a href={project.github} target="_blank" rel="noopener noreferrer" className={styles.linkIcon} onClick={(e) => e.stopPropagation()}>
+                                            <Github size={18} />
+                                        </a>
+                                        <a href={project.link} target="_blank" rel="noopener noreferrer" className={styles.linkIcon} onClick={(e) => e.stopPropagation()}>
+                                            <ExternalLink size={18} />
+                                        </a>
                                     </div>
                                 </div>
 
@@ -122,11 +124,13 @@ export default function Projects() {
                 </motion.div>
             </div>
 
-            <ProjectModal
-                project={selectedProject}
-                isOpen={!!selectedProject}
-                onClose={() => setSelectedProject(null)}
-            />
+            {selectedProject && (
+                <ProjectModal
+                    project={selectedProject}
+                    isOpen={!!selectedProject}
+                    onClose={() => setSelectedProject(null)}
+                />
+            )}
         </section>
     );
 }

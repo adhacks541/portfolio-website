@@ -1,5 +1,7 @@
 .projects {
     padding: 100px 0;
+    position: relative;
+    z-index: 5;
 }
 
 .container {
@@ -9,19 +11,27 @@
 }
 
 .heading {
-    font-size: 2.5rem;
+    font-size: 3rem;
     margin-bottom: 60px;
-    text-align: center;
+    text-align: left;
+    font-family: var(--font-display);
+    position: relative;
+    display: inline-block;
+    padding-left: 20px;
+    border-left: 4px solid var(--accent-cyan);
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 .heading span {
-    color: var(--accent-green);
+    color: var(--accent-cyan);
+    text-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
 }
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 40px;
 }
 
 .card {
@@ -29,26 +39,24 @@
     display: flex;
     flex-direction: column;
     padding: 30px;
-    transition: var(--transition-medium);
-    position: relative;
-    overflow: hidden;
-}
-
-.card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 30px rgba(0, 255, 157, 0.1);
-    border-color: var(--accent-green);
+    background: rgba(10, 10, 20, 0.4);
+    /* Backdrop filter handled by HolographicCard wrapper usually, but adding here just in case */
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all var(--transition-medium);
 }
 
 .cardHeader {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 15px;
 }
 
 .folderIcon {
-    color: var(--accent-green);
+    color: var(--accent-cyan);
+    filter: drop-shadow(0 0 5px rgba(0, 240, 255, 0.4));
 }
 
 .links {
@@ -59,35 +67,61 @@
 .linkIcon {
     color: var(--text-secondary);
     transition: var(--transition-fast);
+    padding: 5px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .linkIcon:hover {
-    color: var(--accent-blue);
+    color: var(--accent-cyan);
+    background: rgba(0, 240, 255, 0.1);
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
+    transform: translateY(-2px);
 }
 
 .title {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     margin-bottom: 15px;
     color: var(--text-primary);
+    font-family: var(--font-display);
+    letter-spacing: 0.5px;
 }
 
 .description {
     color: var(--text-secondary);
-    font-size: 1rem;
+    font-size: 0.95rem;
     line-height: 1.6;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     flex-grow: 1;
 }
 
 .techStack {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 8px;
     margin-top: auto;
 }
 
 .tech {
-    font-size: 0.85rem;
-    color: var(--accent-blue);
+    font-size: 0.75rem;
+    color: var(--accent-green);
     font-family: var(--font-mono);
+    padding: 4px 8px;
+    background: rgba(0, 255, 157, 0.05);
+    border: 1px solid rgba(0, 255, 157, 0.1);
+    border-radius: 4px;
+    text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .heading {
+        font-size: 2rem;
+    }
 }
