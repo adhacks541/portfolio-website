@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Send, Mail, User, MessageSquare, Terminal } from 'lucide-react';
+import { Send, Mail, User, MessageSquare, Terminal, check, AlertCircle } from 'lucide-react';
 import styles from './ContactForm.module.css';
 
 export default function ContactForm() {
@@ -11,18 +11,37 @@ export default function ContactForm() {
         email: '',
         message: ''
     });
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [submitted, setSubmitted] = useState(false);
+    const [status, setStatus] = useState('idle'); // idle, submitting, success, error
+    const [errorMessage, setErrorMessage] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setIsSubmitting(true);
-        // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 1500));
-        setIsSubmitting(false);
-        setSubmitted(true);
-        setFormState({ name: '', email: '', message: '' });
-        setTimeout(() => setSubmitted(false), 3000);
+        setStatus('submitting');
+        setErrorMessage('');
+
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formState),
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                setStatus('success');
+                setFormState({ name: '', email: '', message: '' });
+                setTimeout(() => setStatus('idle'), 5000);
+            } else {
+                setStatus('error');
+                setErrorMessage(data.error || 'Transmission failed. Retrying uplink...');
+            }
+        } catch (error) {
+            setStatus('error');
+            setErrorMessage('Network error. Uplink severed.');
+        }
     };
 
     const handleChange = (e) => {
@@ -60,6 +79,7 @@ export default function ContactForm() {
                                 onChange={handleChange}
                                 required
                                 className={styles.input}
+                                disabled={status === 'submitting'}
                             />
                         </div>
                         <div className={styles.inputGroup}>
@@ -72,6 +92,7 @@ export default function ContactForm() {
                                 onChange={handleChange}
                                 required
                                 className={styles.input}
+                                disabled={status === 'submitting'}
                             />
                         </div>
                         <div className={styles.inputGroup}>
@@ -84,19 +105,26 @@ export default function ContactForm() {
                                 required
                                 className={styles.textarea}
                                 rows={5}
+                                disabled={status === 'submitting'}
                             />
                         </div>
 
+                        {status === 'error' && (
+                            <div style={{ color: '#ff0055', fontFamily: 'monospace', marginTop: '10px', fontSize: '0.9rem' }}>
+                                [ERROR]: {errorMessage}
+                            </div>
+                        )}
+
                         <button
                             type="submit"
-                            disabled={isSubmitting}
-                            className={`${styles.submitBtn} ${submitted ? styles.success : ''}`}
+                            disabled={status === 'submitting' || status === 'success'}
+                            className={`${styles.submitBtn} ${status === 'success' ? styles.success : ''}`}
                         >
-                            {isSubmitting ? (
+                            {status === 'submitting' ? (
                                 <>
                                     <Terminal size={18} className="animate-spin" /> Transmitting...
                                 </>
-                            ) : submitted ? (
+                            ) : status === 'success' ? (
                                 'Create Success!'
                             ) : (
                                 <>
